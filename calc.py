@@ -1,4 +1,15 @@
-''' This is a simple calculator '''
+"""
+calc.py is a simple text-based calculator.
+
+Supported operations:
+  - addition ('+')
+  - subtraction ('-')
+  - multiplication ('*')
+  - division ('/')
+
+The tabulation key, parentheses and more than 1 space in a row
+between symbols are not supported.
+"""
 
 from decimal import Decimal
 
@@ -12,7 +23,10 @@ while True:
 
     try:
         s0 = input('-> ')
-    except:
+    except KeyboardInterrupt:
+        print()
+        break
+    except EOFError:
         print()
         break
 
@@ -22,18 +36,21 @@ while True:
         print('Tabulation is not supported')
         continue
 
+    s0 = s0.strip()
+
     error = False
     for i in range(len(s0)):
         if i < len(s0) - 1 and s0[i] == ' ' and s0[i + 1] == ' ':
             error = True
+            print('More than 1 space in a row')
             break
         if (str.isdigit(s0[i]) or s0[i] == '.') and i < len(s0) - 2:
             if (s0[i + 1] == ' ' and
                (str.isdigit(s0[i + 2]) or s0[i + 2] == '.')):
                 error = True
+                print('Incorrect expression')
                 break
     if error:
-        print('Incorrect expression')
         continue
 
     s0 = s0.replace(' ', '')
@@ -135,7 +152,7 @@ while True:
 
     if '*' in buf2 or '/' in buf2:
         buf2 = mult_div(buf2)
-        if buf2 == False:
+        if buf2 is None:
             continue
 
     if '+' in buf2 or '-' in buf2:

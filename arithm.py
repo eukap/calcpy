@@ -1,4 +1,10 @@
-from decimal import Decimal, DivisionByZero
+"""
+This module defines the arithmetic functions which take a list with
+string elements of decimal numders and operation signs and return
+a new list as a result after some processing.
+"""
+
+from decimal import Decimal
 
 
 def mult_div(lst):
@@ -13,9 +19,9 @@ def mult_div(lst):
         elif lst[i] == '/':
             try:
                 result = Decimal(lst[i - 1]) / Decimal(lst[i + 1])
-            except DivisionByZero:
+            except ZeroDivisionError:
                 print('Division by zero')
-                return False
+                return
             del lst[i - 1:i + 2]
             lst.insert(i - 1, result)
             i -= 1
