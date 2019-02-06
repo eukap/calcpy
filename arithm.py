@@ -4,7 +4,23 @@ string elements of decimal numders and operation signs and return
 a new list as a result after some processing.
 """
 
-from decimal import Decimal
+from decimal import Decimal, InvalidOperation
+
+
+def power(lst):
+    i = -1
+    while i < len(lst) - 1:
+        i += 1
+        if lst[i] == '^':
+            try:
+                result = Decimal(lst[i - 1]) ** Decimal(lst[i + 1])
+            except InvalidOperation:
+                print('Error: unexpected value')
+                return
+            del lst[i - 1:i + 2]
+            lst.insert(i - 1, result)
+            i -= 1
+    return lst
 
 
 def mult_div(lst):
@@ -20,7 +36,7 @@ def mult_div(lst):
             try:
                 result = Decimal(lst[i - 1]) / Decimal(lst[i + 1])
             except ZeroDivisionError:
-                print('Division by zero')
+                print('Error: division by zero')
                 return
             del lst[i - 1:i + 2]
             lst.insert(i - 1, result)
