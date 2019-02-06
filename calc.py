@@ -6,6 +6,7 @@ Supported operations:
   - subtraction ('-')
   - multiplication ('*')
   - division ('/')
+  - raising to a power ('^')
 
 The tabulation key, parentheses and more than 1 space in a row
 between symbols are not supported.
@@ -13,12 +14,12 @@ between symbols are not supported.
 
 from decimal import Decimal
 
-from arithm import mult_div, add_subtr
+from arithm import power, mult_div, add_subtr
 
 
 while True:
 
-    sign = ('+', '-', '*', '/')
+    sign = ('+', '-', '*', '/', '^')
     s = ''
 
     try:
@@ -110,10 +111,11 @@ while True:
     s = s.replace('--', '+')
     s = s.replace('*+', '*')
     s = s.replace('/+', '/')
+    s = s.replace('^+', '^')
 
     buf1 = ''
     for i in range(len(s)):
-        if s[i] == '+' or s[i] == '*' or s[i] == '/':
+        if s[i] == '+' or s[i] in sign[2:]:
             buf1 += ' '
         elif s[i] == '-' and s[i - 1] not in sign:
                 buf1 += ' '
@@ -150,6 +152,11 @@ while True:
     for i in range(0, (len(buf1) + (len(buf2))), 2):
         buf2.insert(i, next(I))
 
+    if '^' in buf2:
+        buf2 = power(buf2)
+        if buf2 is None:
+            continue
+
     if '*' in buf2 or '/' in buf2:
         buf2 = mult_div(buf2)
         if buf2 is None:
@@ -162,4 +169,3 @@ while True:
 
     print(buf2)
     continue
-
