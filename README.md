@@ -6,5 +6,6 @@ Following operations are supported:
 - subtraction ('-')  
 - multiplication ('*')  
 - division ('/')  
+- raising to a power ('^')  
 
 Parentheses are not (yet) supported.
