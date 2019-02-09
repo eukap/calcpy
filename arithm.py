@@ -8,6 +8,10 @@ from decimal import Decimal, InvalidOperation
 
 
 def power(lst):
+    """
+    Execute all raising to a power operations
+    available in the list
+    """
     i = -1
     while i < len(lst) - 1:
         i += 1
@@ -24,6 +28,10 @@ def power(lst):
 
 
 def mult_div(lst):
+    """
+    Execute all multiplication and division operations
+    available in the list
+    """
     i = -1
     while i < len(lst) - 1:
         i += 1
@@ -45,6 +53,10 @@ def mult_div(lst):
 
 
 def add_subtr(lst):
+    """
+    Execute all addition and subtraction operations
+    available in the list
+    """
     i = -1
     while i < len(lst) - 1:
         i += 1
