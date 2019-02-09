@@ -17,6 +17,8 @@ from decimal import Decimal
 from arithm import power, mult_div, add_subtr
 
 
+print('**Press <Ctrl+C> to exit**', end='\n\n')
+
 while True:
 
     sign = ('+', '-', '*', '/', '^')
@@ -31,23 +33,27 @@ while True:
         print()
         break
 
-    if not s0 or str.isspace(s0):
-        continue
-    elif '\t' in s0:
-        print('Tabulation is not supported')
+    if not s0 or s0.isspace():
         continue
 
     s0 = s0.strip()
 
+    if '\t' in s0:
+        print('Tabulation is not supported')
+        continue
+
+    s0 = s0.replace(',', '.')
+
+    # Process incorrect spaces
     error = False
     for i in range(len(s0)):
-        if i < len(s0) - 1 and s0[i] == ' ' and s0[i + 1] == ' ':
+        if i < len(s0) - 1 and s0[i].isspace() and s0[i + 1].isspace():
             error = True
-            print('More than 1 space in a row')
+            print('More than 1 space in a row between symbols')
             break
-        if (str.isdigit(s0[i]) or s0[i] == '.') and i < len(s0) - 2:
-            if (s0[i + 1] == ' ' and
-               (str.isdigit(s0[i + 2]) or s0[i + 2] == '.')):
+        elif (s0[i].isdigit() or s0[i] == '.') and i < len(s0) - 2:
+            if (s0[i + 1].isspace() and
+               (s0[i + 2].isdigit() or s0[i + 2] == '.')):
                 error = True
                 print('Incorrect expression')
                 break
@@ -56,6 +62,7 @@ while True:
 
     s0 = s0.replace(' ', '')
 
+    # Process mathematical signs at the begining and end of the string 
     if s0[0] in sign[2:] or s0[-1] in sign:
         print('Incorrect expression')
         continue
@@ -64,10 +71,11 @@ while True:
             print('Incorrect expression')
             continue
 
+    # Process other incorrect symbols
     signs_count = 0
     digits = error = False
     for x in s0:
-        if str.isdigit(x):
+        if x.isdigit():
             digits = True
             s += x
         elif x in sign:
@@ -92,6 +100,7 @@ while True:
             print(s[1:])
             continue
 
+    # Process math signs inside the string
     error = False
     for i in range(len(s)):
         if s[i] in sign and s[i + 1] in sign:
@@ -113,6 +122,7 @@ while True:
     s = s.replace('/+', '/')
     s = s.replace('^+', '^')
 
+    # Create the 1st list of strings with numbers only
     buf1 = ''
     for i in range(len(s)):
         if s[i] == '+' or s[i] in sign[2:]:
@@ -134,9 +144,10 @@ while True:
         print('Incorrect expression')
         continue
 
+    # Create the 2nd list of strings with signs only
     buf2 = ''
     for i in range(len(s)):
-        if str.isdigit(s[i]) or s[i] == '.':
+        if s[i].isdigit() or s[i] == '.':
             buf2 += ' '
         elif s[i] == '-' and s[i -1] in sign:
             buf2 += ' '
@@ -148,24 +159,27 @@ while True:
 
     buf2 = buf2.split()
 
+    # Combine the lists according to the original string 
     I = iter(buf1)
     for i in range(0, (len(buf1) + (len(buf2))), 2):
         buf2.insert(i, next(I))
 
-    if '^' in buf2:
-        buf2 = power(buf2)
-        if buf2 is None:
+    buf = buf2
+
+    if '^' in buf:
+        buf = power(buf)
+        if buf is None:
             continue
 
-    if '*' in buf2 or '/' in buf2:
-        buf2 = mult_div(buf2)
-        if buf2 is None:
+    if '*' in buf or '/' in buf:
+        buf = mult_div(buf)
+        if buf is None:
             continue
 
-    if '+' in buf2 or '-' in buf2:
-        buf2 = add_subtr(buf2)
+    if '+' in buf or '-' in buf:
+        buf = add_subtr(buf)
 
-    buf2 = buf2[0]
+    result = (str(buf[0])).rstrip('.0')
 
-    print(buf2)
+    print(result)
     continue
