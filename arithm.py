@@ -1,5 +1,5 @@
 """
-This module defines the arithmetic functions which take a list with
+proc.py defines the arithmetic functions which take a list with
 string elements of decimal numders and operation signs and return
 a new list as a result after some processing.
 """
