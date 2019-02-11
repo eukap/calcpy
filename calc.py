@@ -8,7 +8,7 @@ Supported operations:
   - division ('/')
   - raising to a power ('^')
 
-The tabulation key, parentheses and more than 1 space in a row
+The tabulation and more than 1 space in a row
 between symbols are not supported.
 """
 
