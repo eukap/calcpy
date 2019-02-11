@@ -8,4 +8,4 @@ Following operations are supported:
 - division ('/')  
 - raising to a power ('^')  
 
-Parentheses are not (yet) supported.
+Expressions with parentheses are also supported.
