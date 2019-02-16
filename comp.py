@@ -2,6 +2,11 @@ from arithm import power, mult_div, add_subtr
 
 
 def computing(lst):
+    """
+    Take the list with string items, find the math operations signs
+    in it, call respective functions to execute this operations and
+    return result as a string
+    """
     if '^' in lst:
         lst = power(lst)
         if lst is None:
