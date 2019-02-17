@@ -69,7 +69,7 @@ while True:
 
     s0 = s0.replace(' ', '')
 
-    # Process mathematical signs at the begining and end of the string
+    # Process mathematical signs at the beginning and end of the string
     if s0[0] in sign[2:] or s0[-1] in sign:
         print('Incorrect expression')
         continue
