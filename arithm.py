@@ -1,5 +1,5 @@
 """
-arithm.py defines the arithmetic functions which take a list with
+arithm.py defines the arithmetic functions that take a list with
 string elements of decimal numbers and operation signs and return
 a new list as a result after some processing.
 """
