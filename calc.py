@@ -81,7 +81,7 @@ while True:
     # Process incorrect combinations with parentheses
     error = False
     for i in range(len(s0) - 1):
-        if ((s0[i] == '(' and s0[i + 1] ==')') or
+        if ((s0[i] == '(' and s0[i + 1] == ')') or
            (s0[i] == ')' and s0[i + 1] == '(')):
             error = True
             break
@@ -152,6 +152,7 @@ while True:
     # Evaluate expressions in parentheses
     error = False
     i = 0
+    j = 0
     while i < len(s):
         if s[i] == '(':
             j = i
@@ -175,7 +176,13 @@ while True:
         continue
 
     buf = str_to_lst(s)
-    result = (computing(buf)).rstrip('.0')
+    result = computing(buf)
+
+    if '.' in result:
+        result = result.rstrip('0')
+
+    if result[-1] == '.':
+        result = result.rstrip('.')
 
     print(result)
     continue
