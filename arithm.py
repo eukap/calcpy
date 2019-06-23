@@ -19,8 +19,7 @@ def power(lst):
             try:
                 result = Decimal(lst[i - 1]) ** Decimal(lst[i + 1])
             except InvalidOperation:
-                print('Error: unexpected value')
-                return
+                return 'Error: unexpected value'
             del lst[i - 1:i + 2]
             lst.insert(i - 1, result)
             i -= 1
@@ -44,8 +43,7 @@ def mult_div(lst):
             try:
                 result = Decimal(lst[i - 1]) / Decimal(lst[i + 1])
             except ZeroDivisionError:
-                print('Error: division by zero')
-                return
+                return 'Error: division by zero'
             del lst[i - 1:i + 2]
             lst.insert(i - 1, result)
             i -= 1
@@ -71,3 +69,4 @@ def add_subtr(lst):
             lst.insert(i - 1, result)
             i -= 1
     return lst
+
