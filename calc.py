@@ -162,9 +162,7 @@ while True:
                 error = True
                 break
             result = computing(buf)
-            if (result == 'Error: unexpected value' or
-            result == 'Error: division by zero'):
-                print(result)
+            if result is None:
                 error = True
                 break
             if i < len(s) - 1:
@@ -178,12 +176,12 @@ while True:
         continue
 
     buf = str_to_lst(s)
-    result = computing(buf)
+    if buf is None:
+        continue
 
-    if (result == 'Error: unexpected value' or
-    result == 'Error: division by zero'):
-        print(result)
-        continue        
+    result = computing(buf)
+    if result is None:
+        continue
 
     if '.' in result:
         result = result.rstrip('0')
@@ -193,4 +191,3 @@ while True:
 
     print(result)
     continue
-

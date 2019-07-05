@@ -12,10 +12,9 @@ def str_to_lst(string):
         if string[i] == '+' or string[i] in sign[2:]:
             buf1 += ' '
         elif string[i] == '-' and string[i - 1] not in sign:
-                buf1 += ' '
+            buf1 += ' '
         else:
             buf1 += string[i]
-
     if buf1[0] == ' ':
         buf1 = string[0] + buf1[1:]
 
