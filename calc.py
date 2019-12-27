@@ -143,13 +143,9 @@ while True:
         print('Incorrect expression')
         continue
 
-    s = s.replace('++', '+')
-    s = s.replace('+-', '-')
-    s = s.replace('-+', '-')
-    s = s.replace('--', '+')
-    s = s.replace('*+', '*')
-    s = s.replace('/+', '/')
-    s = s.replace('^+', '^')
+    s = (s.replace('++', '+').replace('+-', '-').replace('-+', '-')
+          .replace('--', '+').replace('*+', '*').replace('/+', '/')
+          .replace('^+', '^'))
 
     # Evaluate expressions in parentheses
     error = False
