@@ -1,5 +1,5 @@
 """
-calc.py is a simple text-based calculator.
+calcpy.py is a simple text-based calculator.
 
 Supported operations:
   - addition ('+')
