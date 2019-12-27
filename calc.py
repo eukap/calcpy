@@ -12,6 +12,8 @@ The tabulation and more than 1 space in a row
 between symbols are not supported.
 """
 
+import readline
+
 from proc import str_to_lst
 from comp import computing
 
