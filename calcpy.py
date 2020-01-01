@@ -1,6 +1,8 @@
 """
 calcpy is a simple text-based calculator.
 
+Current version: 1.4
+
 Supported operations:
   - addition ('+')
   - subtraction ('-')
@@ -18,7 +20,7 @@ from proc import str_to_lst
 from comp import computing
 
 
-print('**Press <Ctrl+C> to exit**', end='\n\n')
+print('[Press <Ctrl+C> to exit, type "help" or "-h" for help]', end='\n\n')
 
 while True:
 
@@ -37,12 +39,15 @@ while True:
 
     if not s0 or s0.isspace():
         continue
-    elif s0.count('(') != s0.count(')'):
-        print('Incorrect expression')
-        continue
 
     s0 = s0.strip()
 
+    if s0 == 'help' or s0 == '-h':
+        print(__doc__)
+        continue
+    if s0.count('(') != s0.count(')'):
+        print('Incorrect expression')
+        continue
     if '\t' in s0:
         print('Tabulation is not supported')
         continue
@@ -149,8 +154,7 @@ while True:
 
     # Evaluate expressions in parentheses
     error = False
-    i = 0
-    j = 0
+    i = j = 0
     while i < len(s):
         if s[i] == '(':
             j = i
