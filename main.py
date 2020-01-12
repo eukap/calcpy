@@ -1,7 +1,7 @@
 """
 calcpy is a simple text-based calculator.
 
-Current version: 1.4
+Current version: 1.41
 
 Supported operations:
   - addition ('+')
@@ -20,7 +20,7 @@ from proc import str_to_lst
 from comp import computing
 
 
-print('[Press <Ctrl+C> to exit, type "help" or "-h" for help]', end='\n\n')
+print('[Press <Ctrl+C> to exit, type "help" or "h" for help]', end='\n\n')
 
 while True:
 
@@ -42,7 +42,7 @@ while True:
 
     s0 = s0.strip()
 
-    if s0 == 'help' or s0 == '-h':
+    if s0 == 'help' or s0 == 'h':
         print(__doc__)
         continue
     if s0.count('(') != s0.count(')'):
